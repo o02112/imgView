@@ -19,9 +19,10 @@
 		
 		el = this,
 		
-		imgView = $('<div id="imgView"><div id="viewBox"><img src="" /></div><div id="iv-close">X</div></div>'),
+		imgView = $('<div id="imgView"><div id="viewBox"><img src="" /><div id="transparent"></div></div><div id="iv-close">X</div></div>'),
 		viewBox = imgView.children('#viewBox'),
 		img = viewBox.children('img'),
+		tran = viewBox.children('#transparent');
 		closeBtn = imgView.children('#iv-close');
 		
 		// 把用户的选项与默认值合并，得到最终选项值
@@ -45,6 +46,16 @@
 				'background-color': '#191919',
 				'text-align': 'center'
 			});
+			
+			tran.css({
+				position: 'fixed',
+				width: '100%',
+				height: '100%',
+				top: '0',
+				left: '0',
+				background: 'transparent',
+				'z-index':2
+			})
 			
 			closeBtn.css({
 				position: 'fixed',
@@ -193,11 +204,11 @@
 
 		el.zoomOut = function(zoomLevel){
 			zoomLevel = parseInt(zoomLevel);
-			iv.scale += zoomLevel?zoomLevel:.05;
+			iv.scale += zoomLevel?zoomLevel:.08;
 		}
 		el.zoomIn = function(zoomLevel){
 			zoomLevel = parseInt(zoomLevel);
-			iv.scale -= zoomLevel?zoomLevel:.05;
+			iv.scale -= zoomLevel?zoomLevel:.08;
 			if(iv.scale < 0.5) { iv.scale = 0.5; }
 		}
 		
